@@ -2,16 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Letter : MonoBehaviour {
+public class Letter : MonoBehaviour
+{
 
-    public string LetterContent;
+    // 字母 get set 
+    private string letterContent;
+    public string LetterContent
+    {
+        get
+        {
+            return letterContent;
+        }
+        set
+        {
+            letterContent = value;
+            LetterTextMesh.text = value;
+        }
+    }
+
+
+    public TextMesh LetterTextMesh;
 
     private Word ParentWord;
 
 
     // 初始化赋值父物体 Word
-    public void Init(Word parentWord) {
-        if (ParentWord = null) {
+    public void Init(string letter, Word parentWord) {
+        if (ParentWord == null) {
+            LetterContent = letter;
             parentWord = ParentWord = parentWord;
         }
     }

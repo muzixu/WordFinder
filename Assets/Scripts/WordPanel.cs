@@ -6,11 +6,20 @@ public class WordPanel : MonoBehaviour {
 
     public List<Word> WordList;
 
+    public GameObject WordPrefab;
 
-    public void AddWord(string word) {
-        Word NewWord = new Word();
-        NewWord.Init(word, this);
-        WordList.Add(NewWord);
+
+    public void AddWord(string wordContent) {
+        // 单词依次放好   // 暂时
+        Vector3 pos = new Vector3(0, WordList.Count, -1);
+        GameObject go = Instantiate(WordPrefab, pos, transform.rotation, transform);
+
+        // 单词初始化
+        Word word = go.GetComponent<Word>();
+        word.Init(wordContent, this);
+
+        // 记录 Word List
+        WordList.Add(word);
     }
 
     public void AddMistakeWord(string mistakeWord) {
