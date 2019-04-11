@@ -46,11 +46,12 @@ public class Word : MonoBehaviour {
         }
 
         // 判断
-        if (LetterList[NextLetterIndex].Equals(letter)) {
+        if (WordContent[NextLetterIndex].Equals(letter.ToCharArray()[0])) {
             NextLetterIndex++;
         }
         else {
             NextLetterIndex = 0;
+            ResetLetterStatus();
         }
 
         // 正确拼完单词
@@ -60,8 +61,14 @@ public class Word : MonoBehaviour {
 
     }
 
-    public void SpellOver() {
+    private void SpellOver() {
         ParentWordPanel.ClearWord(this);
+    }
+
+    private void ResetLetterStatus() {
+        foreach (Letter letter in LetterList) {
+            letter.ResetStatus();
+        }
     }
 
 }

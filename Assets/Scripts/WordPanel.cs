@@ -32,6 +32,7 @@ public class WordPanel : MonoBehaviour {
     }
 
     public void ClearWord(Word word) {
+        Debug.Log("执行ClearWord");
         WordList.Remove(word);
         Destroy(word.gameObject);   //暂时  
 

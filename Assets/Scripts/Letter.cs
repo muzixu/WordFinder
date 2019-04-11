@@ -9,20 +9,7 @@ public class Letter : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            //从摄像机发出到点击坐标的射线
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitinfo;
-            if(Physics.Raycast(ray,out hitinfo))
-            {
-                GameObject templetter = hitinfo.collider.gameObject;
-                if(templetter.tag=="letter")
-                {
-                    OnTouch();
-                }
-            }
-        }
+           
     }
 
     // 字母 get set 
