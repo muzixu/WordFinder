@@ -39,15 +39,16 @@ public class Word : MonoBehaviour {
         }
     }
 
-    public void CheckLetter(string letter) {
+    public void CheckLetter(Letter letter) {
         // 防止拼完重复触发 预防BUG
         if (NextLetterIndex >= LetterList.Count) {
             return;
         }
 
         // 判断
-        if (WordContent[NextLetterIndex].Equals(letter.ToCharArray()[0])) {
+        if (WordContent[NextLetterIndex].Equals(letter.LetterContent.ToCharArray()[0])) {
             NextLetterIndex++;
+            letter.RightChoose();
         }
         else {
             NextLetterIndex = 0;
