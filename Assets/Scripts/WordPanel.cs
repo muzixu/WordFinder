@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class WordPanel : MonoBehaviour {
@@ -33,6 +34,8 @@ public class WordPanel : MonoBehaviour {
 
     public void ClearWord(Word word) {
         Debug.Log("执行ClearWord");
+        word.transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
+        word.transform.DOShakePosition(0.5f, new Vector3(0.5f, 0.5f, 0.5f));
         WordList.Remove(word);
         Destroy(word.gameObject);   //暂时  
 

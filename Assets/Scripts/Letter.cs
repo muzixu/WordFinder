@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Letter : MonoBehaviour
@@ -44,7 +45,9 @@ public class Letter : MonoBehaviour
     // 点击到该字母
     public void OnTouch() {
         ParentWord.CheckLetter(LetterContent);
-
+        Tweener w = this.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
+        w.SetEase(Ease.Linear);
+        w.SetLoops(-1, LoopType.Yoyo);
         // ... to do: 改变颜色以提示
 
     }
