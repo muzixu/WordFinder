@@ -8,8 +8,7 @@ public class Word : MonoBehaviour {
     public List<Letter> LetterList;
     public GameObject LetterBoxPrefab;
 
-    private int NextWordIndex;
-    [SerializeField]
+    private int NextLetterIndex;
     private WordPanel ParentWordPanel;
 
 
@@ -20,7 +19,7 @@ public class Word : MonoBehaviour {
             ParentWordPanel = parentWordPanel;
 
             // 初始化字母
-            NextWordIndex = 0;
+            NextLetterIndex = 0;
             CreateLetters();
         }
     }
@@ -41,11 +40,28 @@ public class Word : MonoBehaviour {
     }
 
     public void CheckLetter(string letter) {
+        // 防止拼完重复触发 预防BUG
+        if (NextLetterIndex >= LetterList.Count) {
+            return;
+        }
+
+        // 判断
+        if (LetterList[NextLetterIndex].Equals(letter)) {
+            NextLetterIndex++;
+        }
+        else {
+            NextLetterIndex = 0;
+        }
+
+        // 正确拼完单词
+        if (NextLetterIndex >= LetterList.Count) {
+            SpellOver();
+        }
 
     }
 
     public void SpellOver() {
-
+        ParentWordPanel.ClearWord(this);
     }
 
 }
