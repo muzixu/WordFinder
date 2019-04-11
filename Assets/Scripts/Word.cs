@@ -51,6 +51,7 @@ public class Word : MonoBehaviour {
         }
         else {
             NextLetterIndex = 0;
+            ResetLetterStatus();
         }
 
         // 正确拼完单词
@@ -60,8 +61,14 @@ public class Word : MonoBehaviour {
 
     }
 
-    public void SpellOver() {
+    private void SpellOver() {
         ParentWordPanel.ClearWord(this);
+    }
+
+    private void ResetLetterStatus() {
+        foreach (Letter letter in LetterList) {
+            letter.ResetStatus();
+        }
     }
 
 }

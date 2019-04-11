@@ -17,9 +17,10 @@ public class Letter : MonoBehaviour
             if(Physics.Raycast(ray,out hitinfo))
             {
                 GameObject templetter = hitinfo.collider.gameObject;
-                if(templetter.tag=="letter")
+                if(templetter.tag=="Letter")
                 {
                     OnTouch();
+                    Debug.Log("OnTouch 点到");
                 }
             }
         }
