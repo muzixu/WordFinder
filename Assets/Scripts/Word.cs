@@ -46,7 +46,7 @@ public class Word : MonoBehaviour {
         }
 
         // 判断
-        if (LetterList[NextLetterIndex].Equals(letter)) {
+        if (WordContent[NextLetterIndex].Equals(letter.ToCharArray()[0])) {
             NextLetterIndex++;
         }
         else {
