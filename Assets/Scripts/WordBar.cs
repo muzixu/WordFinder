@@ -6,7 +6,7 @@ using Assets.Scripts;
 
 public class WordBar : WordPanelBase
 {
-
+    public WordPanel WordPanelInstance;
     public Word CurrentWord;
 
     public void UpdateWord(WordBase wordBase) {
@@ -50,6 +50,9 @@ public class WordBar : WordPanelBase
         Destroy(CurrentWord.gameObject, 0.5f);   //暂时  
 
         CurrentWord = new Word();
+
+        // 在WordPanel中也清除
+        WordPanelInstance.ClearWord(wordBase);
     }
 
     public override void FocusOn(WordBase wordBase) {

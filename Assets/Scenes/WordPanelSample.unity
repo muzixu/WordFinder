@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WordPrefab: {fileID: 1446102734386046, guid: a2494ccfc1861b14a8a066a4c7123d15, type: 2}
+  WordPanelInstance: {fileID: 1564116581}
   CurrentWord: {fileID: 0}
 --- !u!1 &1545011780
 GameObject:
