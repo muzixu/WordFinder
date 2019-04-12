@@ -1,52 +1,82 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts;
 
-public class Word : MonoBehaviour {
-
-    public string WordContent;
-    public List<Letter> LetterList;
+public class Word : MonoBehaviour
+{
     public GameObject LetterBoxPrefab;
 
+    private WordBase _WordContent;
+    public WordBase WordContent
+    {
+        get { return _WordContent; }
+        set
+        {
+            if (_WordContent != value) {
+                Clear();    // 清除旧字母
+
+                _WordContent = value;
+                CreateLetters();
+            }
+        }
+    }
+
+
     private int NextLetterIndex;
-    private WordPanel ParentWordPanel;
+
+    private List<Letter> LetterList = new List<Letter>();
+    private WordPanelBase ParentWordPanel;
 
 
-    public void Init(string wordContent, WordPanel parentWordPanel) {
+    public void Awake() {
+        NextLetterIndex = 0;
+    }
+
+    // 初始化 依赖于WordBase
+    public void Init(WordBase _WordBase, WordPanelBase _ParentWordPanel) {
+        WordContent = _WordBase;
+        ParentWordPanel = _ParentWordPanel;
+    }
+
+    // 初始化 弃用
+    public void Init(string wordContent, WordPanelBase parentWordPanel) {
         if (ParentWordPanel == null) {
-            // 内容赋值
-            WordContent = wordContent;
+            WordContent.WordRaw = wordContent;
             ParentWordPanel = parentWordPanel;
 
-            // 初始化字母
-            NextLetterIndex = 0;
             CreateLetters();
         }
     }
 
+    // 创建字母
     private void CreateLetters() {
-        for(int i = 0; i < WordContent.Length; i++) {
+        for (int i = 0; i < WordContent.Length; i++) {
             // 字母依次放好   // 暂时
             Vector3 pos = transform.position + new Vector3(i, 0, -1);
             GameObject go = Instantiate(LetterBoxPrefab, pos, transform.rotation, transform);
 
             // Letter初始化
             Letter letter = go.GetComponent<Letter>();
-            letter.Init(WordContent[i].ToString(), this);
+            letter.Init(WordContent.WordRandom[i].ToString(), this);
 
             // 记录 Letter List
             LetterList.Add(letter);
         }
     }
 
+    // 检查拼写
     public void CheckLetter(Letter letter) {
+        // 通知Panel当前选中该单词
+        ParentWordPanel.FocusOn(WordContent);
+
         // 防止拼完重复触发 预防BUG
-        if (NextLetterIndex >= LetterList.Count) {
+        if (NextLetterIndex >= WordContent.Length) {
             return;
         }
 
         // 判断
-        if (WordContent[NextLetterIndex].Equals(letter.LetterContent.ToCharArray()[0])) {
+        if (WordContent.WordRaw[NextLetterIndex].Equals(letter.LetterContent.ToCharArray()[0])) {
             NextLetterIndex++;
             letter.RightChoose();
         }
@@ -56,19 +86,29 @@ public class Word : MonoBehaviour {
         }
 
         // 正确拼完单词
-        if (NextLetterIndex >= LetterList.Count) {
+        if (NextLetterIndex >= WordContent.Length) {
             SpellOver();
         }
 
     }
 
+    // 拼写正确
     private void SpellOver() {
-        ParentWordPanel.ClearWord(this);
+        ParentWordPanel.ClearWord(WordContent);
     }
 
+    // 重置字母状态
     private void ResetLetterStatus() {
         foreach (Letter letter in LetterList) {
             letter.ResetStatus();
+        }
+    }
+
+    // 删除字母子物体
+    public void Clear() {
+        int count = transform.childCount;
+        for (int i = count - 1; i >= 0; i--) {
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 
