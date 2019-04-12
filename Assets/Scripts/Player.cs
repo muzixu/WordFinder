@@ -25,10 +25,16 @@ public class Player : MonoBehaviour {
             {
                 GameObject templetter = hitinfo.collider.gameObject;
                 Debug.Log("碰到的物体是" + templetter.name);
-                if (templetter.tag == "Letter")
-                {
-                    templetter.SendMessage("OnTouch");
-                    Debug.Log("OnTouch 点到");
+
+                switch (templetter.tag) {
+                    case "LetterInBar":
+                        templetter.SendMessage("OnTouch");
+                        break;
+                    case "LetterInPanel":
+                        templetter.SendMessage("OnTouchAll");
+                        break;
+                    default:
+                        break;
                 }
 
             }

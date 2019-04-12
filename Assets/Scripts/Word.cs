@@ -92,6 +92,12 @@ public class Word : MonoBehaviour
 
     }
 
+    // 聚焦单词
+    public void OnFocus() {
+        ParentWordPanel.FocusOn(WordContent);
+    }
+
+
     // 拼写正确
     private void SpellOver() {
         ParentWordPanel.ClearWord(WordContent);

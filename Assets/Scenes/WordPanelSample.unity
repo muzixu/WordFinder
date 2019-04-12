@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d9ae399c245734ebde363be8ec3388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WordPrefab: {fileID: 1446102734386046, guid: a2494ccfc1861b14a8a066a4c7123d15, type: 2}
+  WordPrefab: {fileID: 1446102734386046, guid: e4c6a7aaff3c4f04eb22d298ef9ad6d1, type: 2}
   WordPanelInstance: {fileID: 1564116581}
   CurrentWord: {fileID: 0}
 --- !u!1 &1545011780

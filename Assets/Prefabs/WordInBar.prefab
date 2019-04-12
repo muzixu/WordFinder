@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4429823415452060}
   - component: {fileID: 114644425603193954}
   m_Layer: 0
-  m_Name: Word
+  m_Name: WordInBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8ffe4fd56176b44b65f34cab52963b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WordContent: 
-  LetterList: []
-  LetterBoxPrefab: {fileID: 1993626486798978, guid: 576401d5e8df55b4a94aac3e531ed413,
+  LetterBoxPrefab: {fileID: 1993626486798978, guid: 993529c1e4d2f0145b8f7c419103d2ea,
     type: 2}

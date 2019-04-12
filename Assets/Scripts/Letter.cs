@@ -51,6 +51,11 @@ public class Letter : MonoBehaviour
 
     }
 
+    // 点击该单词
+    public void OnTouchAll() {
+        ParentWord.OnFocus();
+    }
+
     // 选则正确的效果
     public void RightChoose() {
         RightChooseTweener.Play();

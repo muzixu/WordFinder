@@ -37,11 +37,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4953268418453738}
   - component: {fileID: 212484833374176860}
-  - component: {fileID: 114761820485405592}
   - component: {fileID: 65457475548161508}
+  - component: {fileID: 114761820485405592}
   m_Layer: 0
-  m_Name: LetterBox
-  m_TagString: Letter
+  m_Name: LetterInBar
+  m_TagString: LetterInBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
